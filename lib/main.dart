@@ -22,6 +22,8 @@ class DragAndDropExample extends StatefulWidget {
 class _DragAndDropExampleState extends State<DragAndDropExample> {
   Color dropColor1 = Colors.green;
   Color dropColor2 = Colors.brown;
+  String dropText1 = "Drop here";
+  String dropText2 = "Drop here";
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +45,7 @@ class _DragAndDropExampleState extends State<DragAndDropExample> {
                 color: Colors.red,
                 child: const Center(
                   child: Text('Dragging...',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                      )),
+                      style: TextStyle(color: Colors.white, fontSize: 15)),
                 ),
               ),
             ),
@@ -58,7 +57,7 @@ class _DragAndDropExampleState extends State<DragAndDropExample> {
                 color: Colors.red,
                 child: const Center(
                   child: Text('Dragging...',
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(color: Colors.white, fontSize: 15)),
                 ),
               ),
             ),
@@ -83,6 +82,7 @@ class _DragAndDropExampleState extends State<DragAndDropExample> {
             onAccept: (color) {
               setState(() {
                 dropColor1 = Colors.cyan; // Set final color on accept
+                dropText1 = "The Drop is Done"; // Change text after drop
               });
             },
             onLeave: (data) {
@@ -94,8 +94,9 @@ class _DragAndDropExampleState extends State<DragAndDropExample> {
               height: 100,
               width: 100,
               color: dropColor1,
-              child: const Center(
-                child: Text('Drop here', style: TextStyle(color: Colors.white)),
+              child: Center(
+                child: Text(dropText1,
+                    style: const TextStyle(color: Colors.white)),
               ),
             ),
           ),
@@ -111,19 +112,21 @@ class _DragAndDropExampleState extends State<DragAndDropExample> {
             onAccept: (color) {
               setState(() {
                 dropColor2 = Colors.pink; // Set final color on accept
+                dropText2 = "The Drop is Done"; // Change text after drop
               });
             },
             onLeave: (data) {
               setState(() {
-                dropColor2 = Colors.green; // Reset color when dragging leaves
+                dropColor2 = Colors.brown; // Reset color when dragging leaves
               });
             },
             builder: (context, candidateData, rejectedData) => Container(
               height: 100,
               width: 100,
               color: dropColor2,
-              child: const Center(
-                child: Text('Drop here', style: TextStyle(color: Colors.white)),
+              child: Center(
+                child: Text(dropText2,
+                    style: const TextStyle(color: Colors.white)),
               ),
             ),
           ),
